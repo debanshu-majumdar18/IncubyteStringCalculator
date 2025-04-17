@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>String Calculator</title>
+  <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" %>
+</head>
+<body class="bg-light py-5 d-flex justify-content-center align-items-center" style="height: 100vh;">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">String Calculator</h2>
+
+            <%= form_with url: "/calculate", method: :post, data: { turbo_frame: "result_frame" }, class: "d-flex gap-2" do %>
+              <%= text_field_tag :numbers, nil, placeholder: "e.g., 1,2,3 or //;\n1;2", class: "form-control" %>
+              <%= submit_tag "Calculate", class: "btn btn-primary" %>
+            <% end %>
+
+            <turbo-frame id="result_frame" class="mt-4">
+              <% if @result.present? %>
+                <div class="alert alert-success text-center">
+                  <strong>Result:</strong> <%= @result %>
+                </div>
+              <% end %>
+            </turbo-frame>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
